@@ -46,8 +46,8 @@ export default async function HomePage() {
         <div className="temple-wrap temple-hero-grid">
           <div className="temple-hero-copy">
             <p className="temple-kicker"><span className="temple-kicker-line" />18 years living in Thailand · practical help from Merv</p>
-            <h1 id="home-heading">Thailand is easier<br />with <em>Merv in your corner.</em></h1>
-            <p className="temple-lead">Merv knows the good spots, the real costs of living, and the immigration paperwork that can make staying longer feel complicated. Get help from someone who has lived it.</p>
+            <h1 id="home-heading">More time in Thailand.<br /><em>Less time on paperwork.</em></h1>
+            <p className="temple-lead">Merv lived in Thailand for 18 years. He prepares extension application paperwork from your information for you to review before submitting. He also knows the good spots and the real costs of living.</p>
             <div className="temple-actions">
               <TrackedLink event="paperwork_cta_click" href="/plan-your-trip/thailand-extension-paperwork#enquire" className="temple-btn">Get extension help · {paperworkPrice}</TrackedLink>
               <Link href="/plan-your-trip" className="temple-link">Explore Merv&apos;s services</Link>

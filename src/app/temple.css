@@ -850,3 +850,5 @@ input::placeholder, textarea::placeholder { color:rgba(216,198,164,.65); }
 .temple-actions { gap:20px 32px; }
 @media(max-width:900px){ .temple-hero-grid { padding:48px 0 72px; } .inner-hero, .inner-hero-journal { padding:56px 0; } }
 @media(max-width:640px){ .temple-hero-grid { padding:32px 0 56px; } }
+.temple-hero h1 { font-size:clamp(3.1rem,5.7vw,5.5rem); }
+.temple-hero-copy { gap:24px; }
