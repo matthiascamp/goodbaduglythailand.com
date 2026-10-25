@@ -1,6 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Chonburi&display=swap");
 
-/* The original character-led editorial layout with the later Fraunces type. */
+/* The original character-led editorial layout. Trirong (a Thai-designed
+   serif) carries the headings; Charm, a Thai script face, marks the
+   emphasised phrase in each display heading. */
 :root {
   --wine: #2a0809;
   --wine-dark: #1e0606;
@@ -11,7 +13,8 @@
   --text: #d8c6a4;
   --muted: #bfa98a;
   --line: rgba(201, 165, 90, .4);
-  --serif: Fraunces, Georgia, serif;
+  --serif: Trirong, Georgia, serif;
+  --script: Charm, Trirong, Georgia, serif;
   --sans: Sarabun, Arial, sans-serif;
 }
 
@@ -19,8 +22,9 @@ body:not(.admin-page) { background: var(--wine); background-image: none; font-we
 body:not(.admin-page) h1,
 body:not(.admin-page) h2,
 body:not(.admin-page) h3 { letter-spacing: 0; }
+/* Charm has no italic; its script stroke supplies the emphasis instead. */
 body:not(.admin-page) h1 em,
-body:not(.admin-page) h2 em { font-style: italic; }
+body:not(.admin-page) h2 em { font-family: var(--script); font-style: normal; font-weight: 400; font-size: 1.06em; letter-spacing: 0; }
 
 .topline { background: var(--wine-dark); padding: 7px max(4vw, 24px); color: var(--muted); font-size: 11px; letter-spacing: .26em; }
 .site-header { min-height: 94px; padding: 16px max(4vw, 24px) 24px; border-bottom: 0; justify-content: flex-end; }

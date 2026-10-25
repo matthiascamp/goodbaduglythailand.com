@@ -59,7 +59,7 @@ body[data-page="home"] .hero::before {
   top: 10px;
 }
 
-/* The hero frame enlarges the curved gem beside the wordmark. */
+/* The hero frame enlarges the faceted gem beside the wordmark. */
 body[data-page="home"] .hero-art {
   width: 100%;
   max-width: 580px;
@@ -160,6 +160,21 @@ body[data-page="home"] .truth-card:focus-visible .truth-pane {
 }
 body[data-page="home"] .truth-card:focus-visible {
   outline-offset: 8px;
+}
+
+body[data-page="home"] .truth-photo-credit {
+  margin: 42px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: center;
+}
+body[data-page="home"] .truth-photo-credit a {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+body[data-page="home"] .truth-photo-credit a:hover {
+  color: var(--gold-light);
 }
 
 /* --- Services ------------------------------------------------------ */
