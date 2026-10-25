@@ -1,0 +1,262 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Enums ────────────────────────────────────────────────────────────────────
+// SQLite does not support native enums; we use String with @default and
+// application-level validation via Zod.
+
+// ─── User ─────────────────────────────────────────────────────────────────────
+model User {
+  id                    String           @id @default(cuid())
+  email                 String           @unique
+  passwordHash          String?
+  name                  String?
+  role                  String           @default("USER") // USER | ADMIN
+  authVersion           Int              @default(0) // increment to revoke existing sessions
+  membershipStatus      String           @default("NONE") // NONE | ACTIVE
+  membershipPaidAt      DateTime?
+  stripeCustomerId        String?
+  stripePaymentIntentId   String?
+  stripeCheckoutSessionId String?        // idempotency key — prevents double-grant from Stripe retries
+  createdAt               DateTime       @default(now())
+  updatedAt             DateTime         @updatedAt
+
+  comments       Comment[]
+  lessonProgress LessonProgress[]
+
+  @@map("users")
+}
+
+// Shared, database-backed throttling for password sign-in attempts.
+model LoginThrottle {
+  key          String    @id
+  failures     Int       @default(0)
+  windowStart  DateTime  @default(now())
+  blockedUntil DateTime?
+
+  @@map("login_throttles")
+}
+
+// ─── Category ─────────────────────────────────────────────────────────────────
+model Category {
+  id          String    @id @default(cuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  createdAt   DateTime  @default(now())
+
+  articles Article[]
+
+  @@map("categories")
+}
+
+// ─── Article ──────────────────────────────────────────────────────────────────
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String
+  content     String
+  coverImage  String?
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  categoryId String?
+  category   Category? @relation(fields: [categoryId], references: [id])
+  comments   Comment[]
+
+  @@map("articles")
+}
+
+// ─── Comment ──────────────────────────────────────────────────────────────────
+model Comment {
+  id         String   @id @default(cuid())
+  content    String
+  authorName String?  // populated for anonymous comments; null means use linked user's name
+  approved   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  articleId String
+  article   Article  @relation(fields: [articleId], references: [id], onDelete: Cascade)
+
+  @@map("comments")
+}
+
+// ─── Course ───────────────────────────────────────────────────────────────────
+model Course {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  coverImage  String?
+  published   Boolean  @default(false)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  modules Module[]
+
+  @@map("courses")
+}
+
+// ─── Module ───────────────────────────────────────────────────────────────────
+model Module {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  courseId String
+  course   Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons  Lesson[]
+
+  @@map("modules")
+}
+
+// ─── Lesson ───────────────────────────────────────────────────────────────────
+model Lesson {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String
+  description String?
+  content     String
+  videoUrl    String?
+  durationMin Int?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  moduleId       String
+  module         Module           @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  lessonProgress LessonProgress[]
+
+  @@unique([moduleId, slug])
+  @@map("lessons")
+}
+
+// ─── LessonProgress ──────────────────────────────────────────────────────────
+model LessonProgress {
+  id          String   @id @default(cuid())
+  completedAt DateTime @default(now())
+
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson   Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, lessonId])
+  @@map("lesson_progress")
+}
+
+// ─── Service ──────────────────────────────────────────────────────────────────
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  details     String?
+  priceCents  Int
+  currency    String   @default("USD")
+  durationMin Int?
+  available   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+
+  @@map("services")
+}
+
+// Owner-managed public prices. Static product descriptions remain in source as defaults.
+model SitePrice {
+  key        String   @id
+  cents      Int
+  updatedAt  DateTime @updatedAt
+
+  @@map("site_prices")
+}
+
+model Resource {
+  id           String   @id @default(cuid())
+  title        String
+  description  String   @default("")
+  originalName String
+  storageKey   String   @unique
+  mimeType     String
+  sizeBytes    Int
+  access       String   @default("MEMBER") // PUBLIC | MEMBER
+  published    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([published, access, createdAt])
+  @@map("resources")
+}
+
+// Pre-booking enquiries for the Plan Your Trip services. An enquiry is NOT a booking or payment.
+model ServiceEnquiry {
+  id          String   @id @default(cuid())
+  serviceSlug String
+  kind        String   // CALL | ITINERARY
+  packageId   String?
+  name        String
+  email       String
+  details     String   // JSON of the kind-specific answers (validated server-side)
+  message     String   @default("")
+  status      String   @default("NEW") // NEW | REPLIED | ARCHIVED
+  userId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([status, createdAt])
+  @@index([email, createdAt])
+  @@map("service_enquiries")
+}
+
+// Newsletter interest. A row records explicit consent, not that any email has been delivered.
+model NewsletterSubscriber {
+  id               String    @id @default(cuid())
+  email            String    @unique
+  status           String    @default("ACTIVE") // ACTIVE | UNSUBSCRIBED
+  consentAt        DateTime
+  consentSource    String    // e.g. home, footer, article:<slug>, newsletter-page, guide:<slug>
+  consentText      String    // exact wording the person agreed to
+  unsubscribeToken String    @unique
+  unsubscribedAt   DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([status, createdAt])
+  @@map("newsletter_subscribers")
+}
+
+// Hashed-IP signup attempts used only for rate limiting; pruned opportunistically.
+model NewsletterAttempt {
+  id        String   @id @default(cuid())
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+  @@map("newsletter_attempts")
+}
+
+// Privacy-first aggregate counter: event name + calendar day + count. No user, email, IP or answers are stored.
+model AnalyticsDaily {
+  event String
+  day   String // YYYY-MM-DD (UTC)
+  count Int    @default(0)
+
+  @@id([event, day])
+  @@map("analytics_daily")
+}

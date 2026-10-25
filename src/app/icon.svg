@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Good Bad Ugly Thailand">
+  <rect width="64" height="64" rx="4" fill="#172323"/>
+  <path d="M11 48h42" stroke="#A44730" stroke-width="2"/>
+  <text x="32" y="39" text-anchor="middle" fill="#F5F0E7" font-family="Georgia,serif" font-size="26" letter-spacing="-3">GBU</text>
+</svg>
