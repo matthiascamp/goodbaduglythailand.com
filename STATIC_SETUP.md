@@ -6,6 +6,7 @@ The GitHub Pages site runs without a Node server. The site can receive enquiries
 
 1. Create a Supabase project and keep its database password private.
 2. In the Supabase SQL Editor, run [`supabase/migrations/20261025_static_sales_site.sql`](supabase/migrations/20261025_static_sales_site.sql) once.
+   If the initial migration was already applied before the plan builder was added, also run [`supabase/migrations/20261025_plan_enquiries.sql`](supabase/migrations/20261025_plan_enquiries.sql) so the dashboard accepts plan enquiries.
 3. Under **Authentication → Users**, create the owner's email/password user. Then run this in the SQL Editor, changing the email if the owner account uses another address:
 
    ```sql
@@ -29,7 +30,7 @@ Run `./scripts/publish-pages.ps1` in PowerShell to build and push the generated 
 1. Open `/admin.html` and sign in with the Supabase Auth owner account.
 2. Change a price and confirm it appears on the public page after refresh.
 3. Publish a short article and check `/journal.html`.
-4. Send a test enquiry from `/extension.html` and confirm it appears under **Enquiries** in the dashboard. Mark it replied.
+4. Send a test enquiry from `/plan.html` and confirm it appears under **Enquiries** in the dashboard. Mark it replied.
 
 The static form does not send an email alert. The owner must check the dashboard for Supabase enquiries. Without Supabase, visitors must finish sending the message in their email app. The service does not currently accept payment or documents.
 
@@ -43,4 +44,4 @@ The deployed site serves `robots.txt` and `sitemap.xml`. Add `https://goodbadugl
 
 After a deployment has finished, `./scripts/submit-indexnow.ps1` notifies IndexNow participants of the URLs in the sitemap. This is a crawl notification, not a guarantee that any page will be indexed. Google does not use IndexNow.
 
-The sitemap lists the five public pages. New journal posts stored in Supabase use query URLs and are not added to this static sitemap automatically. Publish substantial first-hand articles by Merv and add a crawlable article URL strategy before relying on the journal for search traffic. A sitemap helps discovery but does not guarantee indexing or rankings.
+The sitemap lists the six public pages. New journal posts stored in Supabase use query URLs and are not added to this static sitemap automatically. Publish substantial first-hand articles by Merv and add a crawlable article URL strategy before relying on the journal for search traffic. A sitemap helps discovery but does not guarantee indexing or rankings.

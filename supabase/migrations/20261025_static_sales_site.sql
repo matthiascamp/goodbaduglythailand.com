@@ -67,7 +67,7 @@ create table if not exists public.enquiries (
   message text not null default '',
   status text not null default 'NEW',
   created_at timestamptz not null default now(),
-  constraint enquiries_service_valid check (service in ('extension', 'consultation', 'moving', 'itinerary', 'other')),
+  constraint enquiries_service_valid check (service in ('extension', 'consultation', 'moving', 'itinerary', 'other', 'plan')),
   constraint enquiries_name_length check (length(name) between 1 and 100),
   constraint enquiries_email_length check (length(email) between 3 and 200),
   constraint enquiries_extension_length check (length(extension_type) <= 200),
