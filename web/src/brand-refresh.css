@@ -78,6 +78,26 @@ body:not(.admin-page) .journal-preview-list {
   border-color: var(--hairline);
 }
 
+/* --- Masthead logo -------------------------------------------------
+   Emerald mark cut from the hero gem silhouette, beside a Trirong
+   wordmark that matches the homepage headline. Nav labels stay Chonburi. */
+body:not(.admin-page) .brand {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 400;
+  gap: 11px;
+  letter-spacing: .005em;
+}
+body:not(.admin-page) .brand small {
+  margin-top: 6px;
+}
+body:not(.admin-page) .brand-mark {
+  width: 22px;
+  height: 30px;
+  background-image: url("/images/brand-emerald.svg");
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .35));
+}
+
 /* Footer brand gets the same confident spacing as the masthead. */
 body:not(.admin-page) .footer-brand small {
   letter-spacing: .38em;
@@ -144,9 +164,23 @@ body:not(.admin-page) .footer-links a:focus-visible {
   body:not(.admin-page) .site-header nav a { font-size: 14px; padding: 10px 0; }
   body:not(.admin-page) .site-header nav .nav-contact { padding: 13px 16px; margin-top: 6px; }
 }
+@media (max-width: 1100px) {
+  body:not(.admin-page) .brand { font-size: 20px; }
+}
 @media (max-width: 760px) {
+  body:not(.admin-page) .brand { font-size: 16px; gap: 8px; }
+  body:not(.admin-page) .brand-mark { width: 18px; height: 25px; }
   body:not(.admin-page) .footer-brand { font-size: 19px; }
   body:not(.admin-page) .footer-links { gap: 14px 22px; }
+}
+
+/* heritage.css hides the mark below 360px; the slimmer Trirong wordmark
+   leaves room for it down to 320px. */
+@media (max-width: 360px) {
+  body:not(.admin-page) .brand { font-size: 12.5px; gap: 5px; }
+  body:not(.admin-page) .brand small { font-size: 6.5px; margin-top: 5px; }
+  body:not(.admin-page) .brand-mark { display: block; width: 15px; height: 21px; }
+  body:not(.admin-page) .menu-toggle { padding: 0 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

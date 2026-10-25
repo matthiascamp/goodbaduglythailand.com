@@ -29,28 +29,15 @@ body[data-page="home"] .hero .hero-sub {
   line-height: 1.4;
 }
 
-body[data-page="home"] .hero .hero-services {
-  max-width: 560px;
-  margin: 22px 0 0;
-  padding-left: 18px;
-  border-left: 1px solid var(--gold);
-  color: var(--text);
-  font-size: 17px;
-  line-height: 1.7;
+/* Single call to action: scrolls to the Good / Bad / Ugly section. */
+body[data-page="home"] .hero .hero-scroll {
+  justify-content: center;
+  gap: 16px;
+  margin-top: clamp(32px, 3.5vw, 48px);
 }
-body[data-page="home"] .hero .hero-services span {
-  display: block;
-  color: var(--gold);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-}
-
-body[data-page="home"] .hero .actions {
-  margin-top: 36px;
-  padding-top: 32px;
-  border-top: 1px solid var(--hairline);
+body[data-page="home"] .hero .hero-scroll span {
+  font-size: 1.1em;
+  line-height: 1;
 }
 
 /* Soften the giant ไทย watermark so the headline reads cleanly. */
@@ -297,15 +284,6 @@ body[data-page="home"] .home-services-cta p {
 @media (max-width: 760px) {
   body[data-page="home"] .hero h1 {
     font-size: clamp(2.6rem, 11vw, 3.8rem);
-  }
-  body[data-page="home"] .hero .hero-sub {
-    font-size: 1.2rem;
-  }
-  body[data-page="home"] .hero .hero-services {
-    font-size: 16px;
-  }
-  body[data-page="home"] .hero .actions {
-    padding-top: 26px;
   }
   body[data-page="home"] .truth-pane {
     max-width: 420px;
