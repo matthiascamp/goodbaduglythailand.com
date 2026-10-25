@@ -1,6 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Chonburi&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap");
-
-/* The editorial visual system from the original 11:47 a.m. commit (749b848). */
+/* The original character-led editorial layout with the later Fraunces type. */
 :root {
   --wine: #2a0809;
   --wine-dark: #1e0606;
@@ -11,7 +9,7 @@
   --text: #d8c6a4;
   --muted: #bfa98a;
   --line: rgba(201, 165, 90, .4);
-  --serif: "Cormorant Garamond", Georgia, serif;
+  --serif: Fraunces, Georgia, serif;
   --sans: Sarabun, Arial, sans-serif;
 }
 
@@ -25,7 +23,7 @@ body:not(.admin-page) h2 em { font-style: italic; }
 .topline { background: var(--wine-dark); padding: 7px max(4vw, 24px); color: var(--muted); font-size: 11px; letter-spacing: .26em; }
 .site-header { min-height: 94px; padding: 16px max(4vw, 24px) 24px; border-bottom: 0; }
 .site-header::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 14px; background: url("/images/kanok-rule.svg") repeat-x center; background-size: 40px 14px; pointer-events: none; }
-.brand { color: var(--gold-light); font-family: Chonburi, Georgia, serif; font-size: 22px; gap: 15px; }
+.brand { color: var(--gold-light); font-family: var(--serif); font-size: 22px; gap: 15px; }
 .brand i { font-style: normal; }
 .brand small { font-size: 9px; color: var(--muted); letter-spacing: .42em; margin-top: 7px; }
 .brand-mark { display: block; width: 24px; height: 30px; flex: none; font-size: 0; background: url("/images/lotus-mark.svg") center / contain no-repeat; }
@@ -66,7 +64,22 @@ body:not(.admin-page) h2 em { font-style: italic; }
 .service-row small { font-size: 16px; }
 .service-row b { font-size: 2rem; }
 .closing { background: var(--wine-dark); }
-.footer-brand { font-family: Chonburi, Georgia, serif; font-size: 26px; color: var(--gold-light); }
+.footer-brand { font-family: var(--serif); font-size: 26px; color: var(--gold-light); }
+
+.truths { background: var(--wine-dark); border-block: 1px solid var(--line); }
+.truths-inner { max-width: 1400px; margin: 0 auto; padding: 112px max(4vw, 24px); }
+.truths-heading { text-align: center; max-width: 700px; margin: 0 auto 64px; }
+.truths-heading h2 { font-size: clamp(3rem, 5vw, 5.2rem); line-height: 1.08; margin: 18px 0; }
+.truths-heading p:last-child { font-size: 18px; }
+.truths-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.5vw, 48px); }
+.truth-card { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; color: var(--text); text-decoration: none; }
+.truth-arch { display: grid; place-items: center; width: 100%; height: 300px; border: 1px solid var(--gold); border-radius: 220px 220px 0 0; background: linear-gradient(180deg, #300a0b, var(--wine-dark)); color: var(--gold); font: 600 125px / 1 var(--sans); transition: border-color .2s, color .2s; }
+.truth-card:hover .truth-arch { border-color: var(--gold-light); color: var(--gold-light); }
+.truth-number { color: var(--gold); font: italic 22px var(--serif); }
+.truth-card h3 { margin: 0; font-size: clamp(2.1rem, 3vw, 2.8rem); }
+.truth-card h3 small { color: var(--gold); font: 400 19px var(--sans); }
+.truth-card p { max-width: 345px; margin: 0; font-size: 17px; line-height: 1.7; }
+.truth-link { margin-top: auto; padding-bottom: 5px; border-bottom: 1px solid var(--gold); color: var(--gold-light); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; }
 .site-footer { background: #160404; }
 .footer-links a { font-size: 12px; letter-spacing: .15em; text-transform: uppercase; }
 
@@ -102,6 +115,10 @@ body:not(.admin-page) h2 em { font-style: italic; }
   .hero .lead { font-size: 18px; }
   .hero-art { max-width: 380px; }
   .section-grid, .journal-preview, .services-block { padding-top: 72px; padding-bottom: 72px; }
+  .truths-inner { padding-top: 72px; padding-bottom: 72px; }
+  .truths-heading { margin-bottom: 42px; }
+  .truths-grid { grid-template-columns: 1fr; gap: 60px; }
+  .truth-arch { max-width: 420px; height: 280px; }
   .interior-hero { padding-top: 64px; padding-bottom: 72px; }
   .interior-hero h1 { font-size: clamp(3.2rem, 11vw, 5rem); }
   .detail-split, .steps, .enquiry-section { padding-top: 72px; padding-bottom: 72px; }
