@@ -15,7 +15,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         home: resolve(root, "index.html"),
-        plan: resolve(root, "plan.html"),
         extension: resolve(root, "extension.html"),
         work: resolve(root, "work.html"),
         journal: resolve(root, "journal.html"),
