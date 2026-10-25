@@ -1,20 +1,18 @@
 # The Good, Bad & Ugly of Thailand
 
-An independent Thailand editorial site built with Next.js 16, Prisma and SQLite. It includes public articles, a member library, service enquiries, newsletter interest, a guide shop preview and an owner studio.
+The live site is a static sales site published to GitHub Pages at [goodbaduglythailand.com](https://goodbaduglythailand.com). It needs no Node server. Merv's extension paperwork service and enquiry path are the focus. Until Supabase is connected, enquiry forms open an email to `merv9280@gmail.com` for the visitor to send.
 
-The featured service is Merv's A$300 Thailand extension paperwork preparation. The owner can edit that price under **Admin → Pricing**. The public enquiry form collects only basic details; it does not take payment or collect passport documents. New enquiries appear under **Admin → Enquiries**. If `RESEND_API_KEY`, `ADMIN_EMAIL`, and either `ENQUIRY_FROM_EMAIL` or `NEWSLETTER_FROM_EMAIL` are configured, the owner also receives an email alert.
+## Local preview
 
-## Run locally
+```sh
+npm ci
+npm run dev:pages
+```
 
-1. Install dependencies with `npm ci`.
-2. Copy `.env.example` to `.env` and set a unique `AUTH_SECRET` and the other local values you need.
-3. Run `npx prisma migrate deploy` and `npm run db:seed`.
-4. Run `npm run dev -- -p 3001` and open `http://localhost:3001`.
+`npm run build:pages` produces `pages-dist/`. Run `./scripts/publish-pages.ps1` to build and publish that directory to the generated `gh-pages` branch. GitHub Pages serves that branch. The `public/CNAME` file preserves the custom domain.
 
-For a production build, run `npm run build` and then `npm run start -- -p 3001`. See [SETUP.md](SETUP.md) for the owner account, content, payment and launch requirements.
+## Connect Supabase
 
-## Before connecting the domain
+See [STATIC_SETUP.md](STATIC_SETUP.md). The SQL migration adds enquiries, articles, prices and an owner role protected by row level security. The public publishable key can be used by the browser. Never put a Supabase service role or secret key in a GitHub Pages build.
 
-This is a server-rendered Node application, not a static site. The server needs persistent database and private resource storage across deployments. The current SQLite setup is suitable for local work; choose a persistent production database and storage plan before accepting sign-ups or payments. Set the production domain in `AUTH_URL` and `NEXT_PUBLIC_SITE_URL`, create a separate production owner account, and test the Stripe webhook before enabling checkout.
-
-Guide downloads, affiliate links, email delivery and final legal policies still require real content or configuration. The local `.env`, database, uploads and `OWNER_LOGIN.txt` are intentionally excluded from Git.
+The earlier Next.js/Prisma version remains in `src/` and `prisma/` as a local legacy implementation. Its member library, downloads, checkout and server routes are **not part of the static GitHub Pages deployment**. `npm run dev` and `npm run build` still target that legacy app; use the `:pages` scripts for the live site.
