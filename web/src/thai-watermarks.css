@@ -1,0 +1,193 @@
+/* Decorative Thai typography across the public pages. Each mark has empty
+   alternate text, sits beneath the content and ignores pointer input. */
+
+body:not(.admin-page) {
+  --thai-ink: rgba(227, 200, 138, .045);
+}
+
+/* --- Host sections: clip the mark and keep it under the content ---- */
+body:not(.admin-page) .truths,
+body:not(.admin-page) .home-services,
+body:not(.admin-page) .services-block,
+body:not(.admin-page) .detail-split,
+body:not(.admin-page) .steps,
+body:not(.admin-page) .closing,
+body:not(.admin-page) .article-list,
+body:not(.admin-page) .about-copy,
+body:not(.admin-page) .plan-intro,
+body:not(.admin-page) .plan-shell,
+body:not(.admin-page) .site-footer {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  overflow: clip;
+}
+
+/* --- Shared mark ---------------------------------------------------- */
+body[data-page="home"] .hero::after,
+body:not(.admin-page) .interior-hero::after,
+body:not(.admin-page) .truths::before,
+body:not(.admin-page) .home-services::before,
+body:not(.admin-page) .services-block::before,
+body:not(.admin-page) .detail-split::before,
+body:not(.admin-page) .steps::before,
+body:not(.admin-page) .closing::before,
+body:not(.admin-page) .article-list::before,
+body:not(.admin-page) .about-copy::before,
+body:not(.admin-page) .plan-intro::before,
+body:not(.admin-page) .plan-shell::before,
+body:not(.admin-page) .site-footer::before {
+  position: absolute;
+  z-index: -1;
+  color: var(--thai-ink);
+  font: 600 clamp(96px, 16vw, 240px) / 1.2 var(--sans);
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Heroes already carry ไทย in ::before and lift their children to
+   z-index 1, so the second mark sits at 0 without isolation. */
+body[data-page="home"] .hero::after,
+body:not(.admin-page) .interior-hero::after {
+  z-index: 0;
+}
+
+/* --- Homepage ------------------------------------------------------- */
+body[data-page="home"] .hero::after {
+  content: "ยินดีต้อนรับ";
+  content: "ยินดีต้อนรับ" / "";
+  left: -.04em;
+  bottom: -.32em;
+  font-size: clamp(80px, 11vw, 190px);
+}
+
+body[data-page="home"] .truths::before {
+  content: "เมืองไทย";
+  content: "เมืองไทย" / "";
+  left: -.06em;
+  top: .1em;
+}
+
+body[data-page="home"] .home-services::before {
+  content: "บริการ";
+  content: "บริการ" / "";
+  right: -.06em;
+  bottom: -.3em;
+}
+
+/* --- Interior heroes: a page word low on the left, opposite ไทย ----- */
+body:not(.admin-page) .interior-hero::after {
+  left: -.04em;
+  bottom: -.34em;
+  font-size: clamp(80px, 12vw, 200px);
+}
+body[data-page="extension"] .interior-hero::after {
+  content: "เอกสาร";
+  content: "เอกสาร" / "";
+}
+body[data-page="work"] .interior-hero::after {
+  content: "บริการ";
+  content: "บริการ" / "";
+}
+body[data-page="journal"] .interior-hero::after {
+  content: "เรื่องเล่า";
+  content: "เรื่องเล่า" / "";
+}
+body[data-page="about"] .interior-hero::after {
+  content: "ชีวิต";
+  content: "ชีวิต" / "";
+}
+
+/* --- Extension ------------------------------------------------------ */
+body[data-page="extension"] .detail-split::before {
+  content: "ไทย";
+  content: "ไทย" / "";
+  right: -.06em;
+  top: .05em;
+}
+body[data-page="extension"] .steps::before {
+  content: "ขั้นตอน";
+  content: "ขั้นตอน" / "";
+  right: -.06em;
+  bottom: -.3em;
+}
+
+/* --- Work ----------------------------------------------------------- */
+body[data-page="work"] .services-block::before {
+  content: "เมืองไทย";
+  content: "เมืองไทย" / "";
+  right: -.06em;
+  top: .1em;
+}
+
+/* --- Journal -------------------------------------------------------- */
+body[data-page="journal"] .article-list::before {
+  content: "เดินทาง";
+  content: "เดินทาง" / "";
+  right: -.1em;
+  bottom: -.25em;
+}
+
+/* --- About ---------------------------------------------------------- */
+body[data-page="about"] .about-copy::before {
+  content: "เมืองไทย";
+  content: "เมืองไทย" / "";
+  left: -.06em;
+  bottom: -.25em;
+}
+
+/* --- Plan ----------------------------------------------------------- */
+body[data-page="plan"] .plan-intro::before {
+  content: "เดินทาง";
+  content: "เดินทาง" / "";
+  right: -.06em;
+  top: .05em;
+}
+body[data-page="plan"] .plan-shell::before {
+  content: "วางแผน";
+  content: "วางแผน" / "";
+  left: -.06em;
+  bottom: -.3em;
+}
+
+/* --- Shared closing band and footer -------------------------------- */
+body:not(.admin-page) .closing::before {
+  content: "ยินดีต้อนรับ";
+  content: "ยินดีต้อนรับ" / "";
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(80px, 13vw, 220px);
+}
+
+body:not(.admin-page) .site-footer::before {
+  content: "สวัสดี";
+  content: "สวัสดี" / "";
+  right: -.06em;
+  top: -.12em;
+  font-size: clamp(88px, 12vw, 200px);
+}
+
+/* --- Small screens: smaller, so a word reads rather than a fragment - */
+@media (max-width: 760px) {
+  body[data-page="home"] .hero::after,
+  body:not(.admin-page) .interior-hero::after,
+  body:not(.admin-page) .closing::before {
+    font-size: clamp(56px, 17vw, 110px);
+  }
+  body:not(.admin-page) .truths::before,
+  body:not(.admin-page) .home-services::before,
+  body:not(.admin-page) .services-block::before,
+  body:not(.admin-page) .detail-split::before,
+  body:not(.admin-page) .steps::before,
+  body:not(.admin-page) .article-list::before,
+  body:not(.admin-page) .about-copy::before,
+  body:not(.admin-page) .plan-intro::before,
+  body:not(.admin-page) .plan-shell::before,
+  body:not(.admin-page) .site-footer::before {
+    font-size: clamp(64px, 22vw, 130px);
+  }
+}
