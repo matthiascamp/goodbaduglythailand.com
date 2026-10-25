@@ -40,12 +40,6 @@ body[data-page="home"] .hero .hero-scroll span {
   line-height: 1;
 }
 
-/* Soften the giant ไทย watermark so the headline reads cleanly. */
-body[data-page="home"] .hero::before {
-  opacity: .5;
-  top: 10px;
-}
-
 /* The hero frame enlarges the faceted gem beside the wordmark. */
 body[data-page="home"] .hero-art {
   width: 100%;
