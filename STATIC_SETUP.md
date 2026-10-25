@@ -36,3 +36,11 @@ The static form does not send an email alert. The owner must check the dashboard
 ## Local connected preview
 
 Run `npm run dev:pages`. Vite loads the repository root `.env.local` locally.
+
+## Search visibility
+
+The deployed site serves `robots.txt` and `sitemap.xml`. Add `https://goodbaduglythailand.com/` to Google Search Console, verify domain ownership, then submit `https://goodbaduglythailand.com/sitemap.xml`. Search Console verification requires the domain owner's Google account or DNS access; it is not part of the static build.
+
+After a deployment has finished, `./scripts/submit-indexnow.ps1` notifies IndexNow participants of the URLs in the sitemap. This is a crawl notification, not a guarantee that any page will be indexed. Google does not use IndexNow.
+
+The sitemap lists the five public pages. New journal posts stored in Supabase use query URLs and are not added to this static sitemap automatically. Publish substantial first-hand articles by Merv and add a crawlable article URL strategy before relying on the journal for search traffic. A sitemap helps discovery but does not guarantee indexing or rankings.

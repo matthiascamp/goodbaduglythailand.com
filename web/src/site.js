@@ -45,6 +45,25 @@ async function loadArticles() {
     document.querySelector("#article-excerpt").textContent = data.excerpt;
     document.querySelector("#article-body").textContent = data.body;
     document.title = `${data.title} | The Good, Bad & Ugly of Thailand`;
+    const articleUrl = `${location.origin}/journal.html?slug=${encodeURIComponent(data.slug)}`;
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", articleUrl);
+    document.querySelector('meta[name="description"]')?.setAttribute("content", data.excerpt);
+    document.querySelector('meta[property="og:type"]')?.setAttribute("content", "article");
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", data.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", data.excerpt);
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", articleUrl);
+    const structuredArticle = document.createElement("script");
+    structuredArticle.type = "application/ld+json";
+    structuredArticle.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: data.title,
+      description: data.excerpt,
+      datePublished: data.created_at,
+      author: { "@type": "Person", name: "Merv" },
+      mainEntityOfPage: articleUrl,
+    });
+    document.head.append(structuredArticle);
     return;
   }
   const target = document.querySelector(document.body.dataset.page === "home" ? "#latest-articles" : "#journal-list");
