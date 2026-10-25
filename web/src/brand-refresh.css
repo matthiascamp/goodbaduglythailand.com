@@ -1,0 +1,156 @@
+/* brand-refresh.css — site-wide polish layered after heritage.css.
+   Loaded on every page. Refines rhythm, contrast and detail without
+   changing the wine + gold identity. */
+
+:root {
+  --ink: #1a0404;
+  --gold-bright: #efd49b;
+  --hairline: rgba(210, 171, 99, .22);
+}
+
+/* Slightly calmer top line, more confident letter-spacing. */
+body:not(.admin-page) .topline {
+  font-size: 10px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+/* Header: tighten the brand, give nav links a quieter resting state
+   and a clearer hover underline. */
+body:not(.admin-page) .site-header nav a:not(.nav-contact) {
+  position: relative;
+  color: var(--text);
+  transition: color .2s;
+}
+body:not(.admin-page) .site-header nav a:not(.nav-contact)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+body:not(.admin-page) .site-header nav a:not(.nav-contact):hover,
+body:not(.admin-page) .site-header nav a:not(.nav-contact)[aria-current="page"] {
+  color: var(--gold-light);
+}
+body:not(.admin-page) .site-header nav a:not(.nav-contact):hover::after,
+body:not(.admin-page) .site-header nav a:not(.nav-contact)[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+body:not(.admin-page) .site-header nav .nav-contact {
+  border-radius: 2px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+body:not(.admin-page) .site-header nav .nav-contact:hover {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: var(--gold);
+}
+
+/* Buttons: a touch more weight, softer corner, steadier motion. */
+body:not(.admin-page) .button {
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+body:not(.admin-page) .button:hover,
+body:not(.admin-page) .button:focus-visible {
+  background: var(--gold-bright);
+}
+
+/* Eyebrow rule reads as a drawn hairline rather than a border. */
+body:not(.admin-page) .eyebrow .rule {
+  height: 1px;
+  border-top: 0;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* Consistent hairlines between the two palettes heritage.css carries. */
+body:not(.admin-page) .credibility,
+body:not(.admin-page) .service-list,
+body:not(.admin-page) .journal-preview-list {
+  border-color: var(--hairline);
+}
+
+/* Footer brand gets the same confident spacing as the masthead. */
+body:not(.admin-page) .footer-brand small {
+  letter-spacing: .38em;
+}
+
+/* --- Chonburi for the navbar and footer ----------------------------
+   Chonburi (loaded by heritage.css for the logo) is wide, so the labels
+   drop the uppercase tracking and stay small enough for one line. */
+body:not(.admin-page) .site-header nav a,
+body:not(.admin-page) .menu-toggle,
+body:not(.admin-page) .footer-brand,
+body:not(.admin-page) .footer-links a {
+  font-family: Chonburi, Georgia, serif;
+  font-weight: 400;
+  text-transform: none;
+}
+body:not(.admin-page) .site-header nav a {
+  font-size: 13px;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+body:not(.admin-page) .site-header nav .nav-contact {
+  padding: 11px 18px;
+}
+body:not(.admin-page) .menu-toggle {
+  font-size: 12px;
+  letter-spacing: .06em;
+}
+body:not(.admin-page) .site-header nav a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+body:not(.admin-page) .footer-brand {
+  font-size: 22px;
+  line-height: 1.2;
+}
+body:not(.admin-page) .footer-brand small {
+  font-family: var(--sans);
+  font-size: 9px;
+}
+body:not(.admin-page) .footer-links a {
+  color: var(--text);
+  font-size: 13px;
+  letter-spacing: .03em;
+}
+body:not(.admin-page) .footer-links a:hover,
+body:not(.admin-page) .footer-links a:focus-visible {
+  color: var(--gold-light);
+}
+
+/* 981–1240px: keep the desktop row on one line around the centred logo. */
+@media (max-width: 1240px) {
+  body:not(.admin-page) .site-header nav { gap: 14px; }
+  body:not(.admin-page) .site-header nav a { font-size: 11px; letter-spacing: .02em; }
+  body:not(.admin-page) .site-header nav .nav-contact { padding: 10px 14px; }
+}
+@media (max-width: 1100px) {
+  body:not(.admin-page) .site-header nav { gap: 12px; }
+  body:not(.admin-page) .site-header nav a { font-size: 10.5px; }
+  body:not(.admin-page) .site-header nav .nav-contact { padding: 9px 12px; }
+}
+/* Collapsed menu (heritage.css switches at 980px): roomier tap targets. */
+@media (max-width: 980px) {
+  body:not(.admin-page) .site-header nav a { font-size: 14px; padding: 10px 0; }
+  body:not(.admin-page) .site-header nav .nav-contact { padding: 13px 16px; margin-top: 6px; }
+}
+@media (max-width: 760px) {
+  body:not(.admin-page) .footer-brand { font-size: 19px; }
+  body:not(.admin-page) .footer-links { gap: 14px 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body:not(.admin-page) .site-header nav a::after,
+  body:not(.admin-page) .button,
+  body:not(.admin-page) .site-header nav .nav-contact { transition: none; }
+}
