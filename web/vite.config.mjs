@@ -17,6 +17,7 @@ export default defineConfig({
         home: resolve(root, "index.html"),
         extension: resolve(root, "extension.html"),
         work: resolve(root, "work.html"),
+        plan: resolve(root, "plan.html"),
         journal: resolve(root, "journal.html"),
         about: resolve(root, "about.html"),
         admin: resolve(root, "admin.html"),

@@ -1,0 +1,46 @@
+.plan-intro, .plan-shell, .plan-review { max-width: 1200px; margin: 0 auto; padding: 92px max(4vw, 24px); }
+.plan-intro { padding-bottom: 74px; }
+.plan-intro h1 { font-size: clamp(3.6rem, 7vw, 7rem); line-height: 1.02; margin: 26px 0; }
+.plan-intro > p:last-child { max-width: 680px; font-size: 19px; }
+.plan-shell { padding-top: 74px; border-top: 1px solid var(--line); }
+.plan-stage { display: flex; align-items: center; gap: 16px; color: var(--gold); text-transform: uppercase; font-size: 11px; letter-spacing: .22em; }
+.plan-stage span { display: grid; place-items: center; width: 42px; height: 42px; border: 1px solid var(--gold); border-radius: 50%; font: italic 20px var(--serif); letter-spacing: 0; }
+.plan-stage p { margin: 0; }
+.plan-shell h2, .plan-review h2 { font-size: clamp(2.8rem, 5vw, 5.3rem); line-height: 1.08; margin: 25px 0 16px; }
+.plan-instruction { color: var(--muted); margin-bottom: 35px; }
+.plan-options { border-top: 1px solid var(--line); }
+.plan-option { position: relative; display: grid; grid-template-columns: 55px minmax(0, 1fr) 34px; align-items: center; gap: 24px; padding: 27px 22px; border-bottom: 1px solid var(--line); cursor: pointer; transition: background .2s; }
+.plan-option:hover, .plan-option.selected { background: rgba(201,165,90,.08); }
+.plan-option:focus-within { outline: 2px solid var(--gold-light); outline-offset: -2px; }
+.plan-option input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.plan-option-number { color: var(--gold); font: italic 24px var(--serif); }
+.plan-option-copy strong { display: block; color: var(--cream); font: 400 clamp(1.6rem, 3vw, 2.5rem) var(--serif); }
+.plan-option-copy small { display: block; color: var(--muted); font-size: 15px; margin-top: 8px; line-height: 1.5; }
+.plan-option-mark { color: var(--gold-light); font-size: 29px; text-align: center; }
+.plan-selection-status { color: var(--gold-light); font-size: 14px; margin: 26px 0; }
+.plan-review { border-top: 1px solid var(--line); padding-top: 74px; }
+.plan-review[hidden] { display: none; }
+.plan-review-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .85fr); gap: 70px; margin: 20px 0 70px; }
+.plan-review-grid > div:first-child > p { max-width: 420px; }
+.plan-edit { background: none; border-top: 0; border-right: 0; border-left: 0; padding-left: 0; cursor: pointer; }
+.plan-summary { border: 1px solid var(--gold); padding: 30px; align-self: start; background: var(--wine-dark); }
+.plan-line, .plan-total { display: flex; justify-content: space-between; gap: 25px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.plan-line span:first-child { color: var(--cream); }
+.plan-line span:last-child { color: var(--gold-light); white-space: nowrap; }
+.plan-total { align-items: baseline; border-bottom: 0; margin-top: 8px; color: var(--cream); }
+.plan-total strong { color: var(--gold-light); font: 400 clamp(2rem, 3vw, 3rem) var(--serif); white-space: nowrap; }
+.plan-summary .form-note { margin: 13px 0 0; }
+.plan-form { max-width: 760px; border-top: 1px solid var(--line); padding-top: 35px; }
+.plan-form .plan-stage { margin-bottom: 20px; }
+#plan-extension-fields { display: grid; gap: 18px; }
+#plan-extension-fields[hidden] { display: none; }
+.plan-form .form-note a { color: var(--gold-light); }
+@media (max-width: 760px) {
+  .plan-intro, .plan-shell, .plan-review { padding-top: 65px; padding-bottom: 65px; }
+  .plan-intro h1 { font-size: clamp(3.3rem, 11vw, 5rem); }
+  .plan-option { grid-template-columns: 28px minmax(0, 1fr) 24px; gap: 12px; padding: 23px 8px; }
+  .plan-option-copy small { font-size: 14px; }
+  .plan-review-grid { grid-template-columns: 1fr; gap: 30px; }
+  .plan-summary { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) { .plan-option { transition: none; } }

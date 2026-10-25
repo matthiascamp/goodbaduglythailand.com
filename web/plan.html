@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#260708" />
+  <title>Build Your Thailand Request | Work with Merv</title>
+  <meta name="description" content="Choose the Thailand help you need from Merv, who lived there for 18 years. Review your selections and service estimate before sending an enquiry." />
+  <link rel="canonical" href="https://goodbaduglythailand.com/plan.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Good, Bad &amp; Ugly of Thailand" />
+  <meta property="og:title" content="Build Your Thailand Request | Work with Merv" />
+  <meta property="og:description" content="Choose the Thailand help you need, review the service estimate, and send Merv your request." />
+  <meta property="og:url" content="https://goodbaduglythailand.com/plan.html" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400,0;0,9..144,600,0;1,9..144,400,0&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/src/site.css" />
+  <link rel="stylesheet" href="/src/heritage.css" />
+  <link rel="stylesheet" href="/src/plan.css" />
+</head>
+<body data-page="plan">
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="topline"><span>Independent Thailand advice from Merv</span><span>18 years lived experience</span></div>
+  <header class="site-header">
+    <a href="/" class="brand" aria-label="The Good, Bad &amp; Ugly of Thailand home"><span class="brand-mark" aria-hidden="true">✦</span><span>The Good, Bad <i>&amp;</i> Ugly<small>of Thailand</small></span></a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav id="main-nav" aria-label="Main navigation"><a href="/extension.html">Extension help</a><a href="/work.html" aria-current="page">Work with Merv</a><a href="/journal.html">Journal</a><a href="/about.html">About</a><a class="nav-contact" href="mailto:merv9280@gmail.com">Contact Merv <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="main">
+    <section class="plan-intro">
+      <p class="eyebrow"><span class="rule"></span> Work with Merv / Your request</p>
+      <h1>What do you want<br><em>out of Thailand?</em></h1>
+      <p>Merv spent 18 years there. Pick what you need help with. You can choose more than one, then see the service estimate before you send a thing.</p>
+    </section>
+    <section class="plan-shell" aria-labelledby="choose-heading">
+      <div class="plan-stage"><span>01</span><p>Choose your help</p></div>
+      <h2 id="choose-heading">Choose what would make<br><em>your time there better.</em></h2>
+      <p class="plan-instruction">Select any that fit. Nothing is booked or charged here.</p>
+      <div class="plan-options" id="plan-options">
+        <label class="plan-option" data-service="extension"><input type="checkbox" name="help" value="extension" /><span class="plan-option-number">01</span><span class="plan-option-copy"><strong>Sort my extension paperwork</strong><small>Merv prepares the agreed forms from your details. You review, sign and submit.</small></span><span class="plan-option-mark" aria-hidden="true">+</span></label>
+        <label class="plan-option" data-service="consultation"><input type="checkbox" name="help" value="consultation" /><span class="plan-option-number">02</span><span class="plan-option-copy"><strong>Ask Merv about my trip</strong><small>A private 30-minute call about places, budgets and practical questions.</small></span><span class="plan-option-mark" aria-hidden="true">+</span></label>
+        <label class="plan-option" data-service="moving"><input type="checkbox" name="help" value="moving" /><span class="plan-option-number">03</span><span class="plan-option-copy"><strong>Talk through a move</strong><small>Ask about neighbourhoods, living costs and day-to-day life.</small></span><span class="plan-option-mark" aria-hidden="true">+</span></label>
+        <label class="plan-option" data-service="itinerary"><input type="checkbox" name="help" value="itinerary" /><span class="plan-option-number">04</span><span class="plan-option-copy"><strong>Have a route made for me</strong><small>An itinerary shaped around your dates, budget and travel style.</small></span><span class="plan-option-mark" aria-hidden="true">+</span></label>
+      </div>
+      <p class="plan-selection-status" id="selection-status" role="status" aria-live="polite">Choose at least one service to continue.</p>
+      <button class="button" id="review-plan" type="button">Review my choices <span aria-hidden="true">↗</span></button>
+    </section>
+    <section class="plan-review" id="plan-review" aria-labelledby="review-heading" hidden>
+      <div class="plan-stage"><span>02</span><p>Review your request</p></div>
+      <div class="plan-review-grid">
+        <div>
+          <h2 id="review-heading">Here is what<br><em>you chose.</em></h2>
+          <p>Merv will confirm what he can do and the final scope before you agree to pay.</p>
+          <button class="text-link plan-edit" id="edit-plan" type="button">Change my choices <span aria-hidden="true">↗</span></button>
+        </div>
+        <div class="plan-summary">
+          <div id="plan-lines"></div>
+          <div class="plan-total"><span>Service estimate</span><strong id="plan-total"></strong></div>
+          <p id="plan-estimate-note" class="form-note"></p>
+          <p class="form-note">Government fees and third-party costs are separate. No payment is taken on this site.</p>
+        </div>
+      </div>
+      <form id="plan-form" class="lead-form plan-form">
+        <div class="plan-stage"><span>03</span><p>Tell Merv enough to reply</p></div>
+        <div class="row"><label>Your name<input name="name" required maxlength="100" autocomplete="name" /></label><label>Email address<input name="email" type="email" required maxlength="200" autocomplete="email" /></label></div>
+        <div id="plan-extension-fields" hidden>
+          <label>What kind of extension? <span class="muted">(if you know)</span><input name="extension_type" maxlength="200" placeholder="It's fine if you're unsure" /></label>
+          <div class="row"><label>When does your current permission end? <span class="muted">(if known)</span><input name="expiry_date" maxlength="100" placeholder="Date or approximate date" /></label><label>Where in Thailand are you? <span class="muted">(if applicable)</span><input name="location" maxlength="200" placeholder="City or province" /></label></div>
+        </div>
+        <label>What should Merv know about your plans?<textarea name="message" required maxlength="1300" placeholder="Dates, places, your main question, or anything that might change the advice"></textarea></label>
+        <div class="honeypot" aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off" /></label></div>
+        <p class="form-note">Please don't include passport numbers, document copies or payment details.</p>
+        <label class="checkbox"><input name="acknowledged" type="checkbox" required /><span>I understand this is a request for Merv to review. Nothing is booked or charged, and immigration approval is never guaranteed.</span></label>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <button class="button" type="submit">Send my request to Merv <span aria-hidden="true">↗</span></button>
+        <p class="form-note">If the site cannot send directly, your email app will open with your request ready to send to <a href="mailto:merv9280@gmail.com">merv9280@gmail.com</a>.</p>
+      </form>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="footer-top"><a href="/" class="footer-brand">The Good, Bad &amp; Ugly<small>of Thailand</small></a><p>Practical Thailand help from someone who spent 18 years living there.</p></div><div class="footer-links"><a href="/extension.html">Extension help</a><a href="/work.html">All services</a><a href="/journal.html">Journal</a><a href="/about.html">About Merv</a><a href="mailto:merv9280@gmail.com">Email Merv</a><a href="/admin.html">Owner login</a></div><p class="footer-bottom">© <span id="year">2026</span> The Good, Bad &amp; Ugly of Thailand · Immigration decisions remain with Thai authorities.</p></footer>
+  <script type="module" src="/src/site.js"></script>
+  <script type="module" src="/src/plan.js"></script>
+</body>
+</html>

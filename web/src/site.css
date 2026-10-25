@@ -13,3 +13,5 @@ body:not(.admin-page){background-image:radial-gradient(ellipse 65% 540px at 78% 
 .hero .arch{box-shadow:0 28px 50px -30px #000,0 0 70px -45px rgba(232,186,111,.48)}
 .button:hover,.button:focus-visible{box-shadow:0 0 28px -12px rgba(234,208,153,.8)}
 a:focus-visible,button:focus-visible{outline:2px solid var(--gold-light);outline-offset:4px}
+
+@media(min-width:761px){.service-row{grid-template-columns:60px minmax(0,1fr) 24px}}
