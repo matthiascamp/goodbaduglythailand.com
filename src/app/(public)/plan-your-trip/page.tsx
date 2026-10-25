@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Plan Your Trip",
   description:
-    "Personal Thailand advice from approximately 18 years of lived experience: insider consultation, custom itineraries and moving-to-Thailand guidance, priced in AUD.",
+    "Work with Merv, who lived in Thailand for 18 years. Extension paperwork preparation, insider consultations, itineraries and moving guidance, priced in AUD.",
   alternates: { canonical: "/plan-your-trip" },
   openGraph: { title: "Plan Your Trip · The Good, Bad & Ugly of Thailand", description: "Insider consultations and custom itineraries for Thailand.", url: "/plan-your-trip" },
 };
@@ -19,8 +19,8 @@ export default function PlanYourTripPage() {
       <section className="plan-hero">
         <div className="temple-wrap">
           <p className="temple-kicker"><span className="temple-kicker-line" />Plan your trip</p>
-          <h1>A little local knowledge <em>goes a long way.</em></h1>
-          <p className="temple-lead">{EXPERIENCE_STATEMENT} Choose the kind of help that suits you. Every service starts with an enquiry, so you can ask before you commit.</p>
+          <h1>Get Merv <em>in your corner.</em></h1>
+          <p className="temple-lead">{EXPERIENCE_STATEMENT} Get help with extension paperwork, a move, or the trip you have been planning. Every service starts with an enquiry, so you can ask before you commit.</p>
         </div>
       </section>
 

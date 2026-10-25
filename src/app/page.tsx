@@ -8,12 +8,15 @@ import ServiceCards from "@/components/plan/ServiceCards";
 import NewsletterSignup from "@/components/newsletter/NewsletterSignup";
 import BenefitList from "@/components/BenefitList";
 import { MEMBER_BENEFITS, VISITOR_BENEFITS } from "@/lib/membership-plans";
+import { formatAud } from "@/lib/plan-services";
+import { getResolvedServices } from "@/lib/site-prices";
+import { TrackedLink } from "@/components/TrackedLink";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Thailand, honestly",
-  description: "A candid guide to the good, the bad and the ugly of Thailand.",
+  title: "Thailand help from Merv",
+  description: "Merv lived in Thailand for 18 years. Get practical help with extension paperwork, travel planning and moving to Thailand.",
 };
 
 const truths = [
@@ -24,6 +27,8 @@ const truths = [
 
 export default async function HomePage() {
   const pricing = await getPricingConfig();
+  const paperwork = (await getResolvedServices()).find((service) => service.slug === "thailand-extension-paperwork");
+  const paperworkPrice = formatAud(paperwork?.priceAud ?? 300);
   const [articles, courses] = await Promise.all([
     db.article.findMany({
       where: { published: true },
@@ -40,13 +45,12 @@ export default async function HomePage() {
         <span className="temple-hero-glyph" lang="th" aria-hidden="true">ไทย</span>
         <div className="temple-wrap temple-hero-grid">
           <div className="temple-hero-copy">
-            <p className="temple-kicker"><span className="temple-kicker-line" /><span lang="th">สวัสดี</span> · Welcome</p>
-            <h1 id="home-heading">The real Thailand.<br /><em>All of it.</em></h1>
-            <p className="temple-lead">What people love, what quietly wears them down, and the harder realities — for anyone planning a visit, a move, or a life here.</p>
+            <p className="temple-kicker"><span className="temple-kicker-line" />18 years living in Thailand · practical help from Merv</p>
+            <h1 id="home-heading">Thailand is easier<br />with <em>Merv in your corner.</em></h1>
+            <p className="temple-lead">Merv knows the good spots, the real costs of living, and the immigration paperwork that can make staying longer feel complicated. Get help from someone who has lived it.</p>
             <div className="temple-actions">
-              <Link href="/membership" className="temple-btn">Become a member</Link>
-              <Link href="/articles" className="temple-link">Read the journal</Link>
-              <Link href="/plan-your-trip" className="temple-link temple-link-sm temple-link-quiet">Plan your trip</Link>
+              <TrackedLink event="paperwork_cta_click" href="/plan-your-trip/thailand-extension-paperwork#enquire" className="temple-btn">Get extension help · {paperworkPrice}</TrackedLink>
+              <Link href="/plan-your-trip" className="temple-link">Explore Merv&apos;s services</Link>
             </div>
           </div>
           <div className="temple-hero-art">
@@ -57,6 +61,30 @@ export default async function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section className="temple-wrap merv-feature" aria-labelledby="merv-feature-heading">
+        <div>
+          <p className="temple-kicker">The service people ask for</p>
+          <h2 id="merv-feature-heading">Need more time in Thailand? <em>Get the paperwork sorted.</em></h2>
+          <p>Tell Merv what extension you need and when your current permission ends. He will confirm the scope, prepare the application paperwork from your information, and send it back for you to review before you submit it.</p>
+          <TrackedLink event="paperwork_cta_click" href="/plan-your-trip/thailand-extension-paperwork" className="temple-btn">See the {paperworkPrice} paperwork service</TrackedLink>
+        </div>
+        <aside aria-label="About Merv">
+          <span className="merv-feature-number">18</span>
+          <span className="merv-feature-label">years living in Thailand</span>
+          <p>Local places. Everyday costs. The practical details you want to understand before making a move.</p>
+          <Link href="/about" className="temple-link temple-link-sm">Meet Merv</Link>
+        </aside>
+      </section>
+
+      <section className="temple-wrap plan-home" aria-labelledby="plan-home-heading">
+        <div className="temple-section-head">
+          <p className="temple-kicker">Work with Merv</p>
+          <h2 id="plan-home-heading">Good advice for <em>the decisions ahead.</em></h2>
+          <p>Paperwork help, an honest conversation about moving, or a trip built around the places worth your time. Choose the help you need and enquire before you commit.</p>
+        </div>
+        <ServiceCards />
       </section>
 
       <section className="temple-band" aria-labelledby="truths-heading">
@@ -107,15 +135,6 @@ export default async function HomePage() {
             <p>Reviewed articles will appear here when they are published.</p>
           </div>
         )}
-      </section>
-
-      <section className="temple-wrap plan-home" aria-labelledby="plan-home-heading">
-        <div className="temple-section-head">
-          <p className="temple-kicker">Plan your trip</p>
-          <h2 id="plan-home-heading">A little local knowledge <em>goes a long way.</em></h2>
-          <p>Planning a holiday, exploring a new city, or thinking about making Thailand home? Get personalised advice from someone who has spent approximately 18 years learning the country beyond the tourist trail.</p>
-        </div>
-        <ServiceCards />
       </section>
 
       <section className="temple-wrap plan-home" aria-labelledby="newsletter-home-heading">

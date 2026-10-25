@@ -3,7 +3,7 @@
   --bg:#2A0809; --deep:#1E0606; --deeper:#160404; --glyph:#300A0B;
   --gold:#C9A55A; --gold-l:#E3C88A; --ivory:#F3E7CF; --text:#D8C6A4; --muted:#BFA98A; --on-gold:#240707;
   --line:rgba(201,165,90,.4); --line-soft:rgba(201,165,90,.25);
-  --serif:var(--font-cormorant),"Cormorant Garamond",Georgia,serif;
+  --serif:var(--font-fraunces),Fraunces,"Cormorant Garamond",Georgia,serif;
   --sans:var(--font-sarabun),Sarabun,system-ui,sans-serif;
   --brand:var(--font-chonburi),Chonburi,Georgia,serif;
   --wrap:1320px;
@@ -230,6 +230,34 @@ input:-webkit-autofill { -webkit-text-fill-color:var(--ivory); box-shadow:0 0 0 
   .inner-service-facts { grid-column:2; align-items:flex-start; text-align:left; }
   .inner-service-facts strong { white-space:normal; }
 }
+
+/* Merv's service pitch: typography and restraint carry the emphasis. */
+.merv-feature { display:grid; grid-template-columns:minmax(0,1.6fr) minmax(250px,.7fr); gap:clamp(32px,6vw,100px); align-items:center; padding:80px 0 32px; }
+.merv-feature h2 { max-width:17ch; margin:10px 0 22px; font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,4vw,4.2rem); line-height:1.12; color:var(--ivory); }
+.merv-feature h2 em { color:var(--gold-l); }
+.merv-feature p:not(.temple-kicker) { max-width:62ch; color:var(--text); line-height:1.75; margin:0 0 26px; }
+.merv-feature aside { border-left:1px solid var(--line); padding:8px 0 8px clamp(24px,4vw,56px); }
+.merv-feature-number { display:block; font-family:var(--serif); font-size:clamp(5rem,10vw,9rem); line-height:.9; color:var(--gold-l); }
+.merv-feature-label { display:block; margin:14px 0 22px; color:var(--ivory); text-transform:uppercase; letter-spacing:.16em; font-size:.72rem; }
+.merv-feature aside p { font-size:.95rem; }
+.plan-cards > li:first-child { grid-column:1/-1; }
+.plan-card.plan-card-featured { display:grid; grid-template-columns:minmax(230px,.75fr) 1.25fr; }
+.plan-card-mark { min-height:260px; display:flex; flex-direction:column; justify-content:space-between; padding:30px; background:radial-gradient(circle at 90% 100%,rgba(201,165,90,.13),transparent 60%),var(--glyph); border-right:1px solid var(--line); }
+.plan-card-mark span,.plan-detail-art span,.plan-detail-art small { font-size:.7rem; color:var(--gold-l); letter-spacing:.18em; }
+.plan-card-mark strong { font:400 clamp(2.4rem,5vw,5rem)/1 var(--serif); color:var(--ivory); }
+.plan-card-featured .plan-card-body { justify-content:center; padding:clamp(26px,4vw,58px); }
+.plan-card-featured .plan-card-body h2,.plan-card-featured .plan-card-body h3 { font-size:clamp(2rem,3vw,3.2rem); }
+.plan-detail-art { aspect-ratio:4/5; display:flex; flex-direction:column; justify-content:space-between; padding:clamp(28px,5vw,64px); border:1px solid var(--line); background:radial-gradient(circle at 90% 80%,rgba(201,165,90,.16),transparent 55%),var(--glyph); }
+.plan-detail-art strong { font:400 clamp(3.5rem,7vw,7rem)/.95 var(--serif); color:var(--ivory); }
+@media(max-width:900px){ .merv-feature { grid-template-columns:1fr; padding-top:64px; } .merv-feature aside { max-width:520px; } .plan-card.plan-card-featured { grid-template-columns:1fr; } .plan-card-mark { min-height:190px; } }
+.paperwork-steps { border-top:1px solid var(--line-soft); }
+.paperwork-steps ol { list-style:none; margin:24px 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.paperwork-steps li { display:flex; gap:18px; border-top:1px solid var(--line); padding-top:22px; }
+.paperwork-steps li>span { color:var(--gold-l); font:400 1.6rem var(--serif); }
+.paperwork-steps h3 { margin:0 0 8px; color:var(--ivory); font:400 1.4rem var(--serif); }
+.paperwork-steps p { max-width:76ch; line-height:1.7; }
+.paperwork-steps a { color:var(--gold-l); }
+@media(max-width:900px){ .paperwork-steps ol { grid-template-columns:1fr; } }
 
 /* ---------- Membership ---------- */
 .membership-hero { background:var(--bg); padding:104px 0; border-bottom:1px solid var(--line); }

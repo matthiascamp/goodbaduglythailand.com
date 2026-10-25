@@ -7,12 +7,13 @@ import { db } from "@/lib/db";
  */
 
 /** Events a browser may report (public, rate limited). Everything else is server-side only. */
-export const CLIENT_EVENTS = ["service_cta_click", "affiliate_outbound_click", "guide_purchase_intent"] as const;
+export const CLIENT_EVENTS = ["service_cta_click", "paperwork_cta_click", "affiliate_outbound_click", "guide_purchase_intent"] as const;
 export type ClientEvent = (typeof CLIENT_EVENTS)[number];
 
 /** Events recorded by the server at the moment the outcome is known. */
 export const SERVER_EVENTS = [
   "enquiry_submitted",
+  "paperwork_enquiry_submitted",
   "itinerary_enquiry_submitted",
   "newsletter_subscribe",
   "guide_release_interest",

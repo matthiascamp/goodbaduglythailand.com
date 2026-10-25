@@ -2,6 +2,8 @@
 
 An independent Thailand editorial site built with Next.js 16, Prisma and SQLite. It includes public articles, a member library, service enquiries, newsletter interest, a guide shop preview and an owner studio.
 
+The featured service is Merv's A$300 Thailand extension paperwork preparation. The owner can edit that price under **Admin → Pricing**. The public enquiry form collects only basic details; it does not take payment or collect passport documents. New enquiries appear under **Admin → Enquiries**. If `RESEND_API_KEY`, `ADMIN_EMAIL`, and either `ENQUIRY_FROM_EMAIL` or `NEWSLETTER_FROM_EMAIL` are configured, the owner also receives an email alert.
+
 ## Run locally
 
 1. Install dependencies with `npm ci`.

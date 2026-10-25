@@ -4,7 +4,7 @@ import { EXPERIENCE_STATEMENT, ADVICE_DISCLAIMER } from "@/lib/plan-services";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "The thinking behind Good, Bad & Ugly Thailand: a clearer, more complete way to learn about the country, written from approximately 18 years of lived experience.",
+  description: "Meet Merv, who lived in Thailand for 18 years and offers practical help with paperwork, travel and moving.",
   alternates: { canonical: "/about" },
 };
 
@@ -14,7 +14,7 @@ export default function AboutPage() {
       <div className="editorial-container">
         <p className="editorial-eyebrow editorial-eyebrow-light"><span className="editorial-rule" /> ABOUT THE PROJECT</p>
         <h1>The whole picture<br /><em>matters.</em></h1>
-        <p>Good, Bad & Ugly Thailand is being built as a place for candid, practical learning about Thailand.</p>
+        <p>Meet Merv. After 18 years living in Thailand, he helps people plan better trips, understand daily life and prepare extension paperwork.</p>
       </div>
     </section>
     <section className="inner-story">
@@ -31,10 +31,10 @@ export default function AboutPage() {
       <div className="editorial-container inner-story-grid">
         <p className="editorial-eyebrow"><span className="editorial-rule" /> ABOUT THE AUTHOR</p>
         <div>
-          <h2 id="author-heading">Lived experience, <em>not a brochure.</em></h2>
-          <p>{EXPERIENCE_STATEMENT} The articles and advice here come from day-to-day life in the country, including the parts that are frustrating or expensive, not from a tourism board.</p>
+          <h2 id="author-heading">Meet <em>Merv.</em></h2>
+          <p>{EXPERIENCE_STATEMENT} He can talk plainly about immigration paperwork, living costs and how Thailand&apos;s economy shapes everyday decisions. His perspective comes from day-to-day life in the country, including the parts that are frustrating or expensive.</p>
           <p>{ADVICE_DISCLAIMER} Where a detail depends on rules that change, such as visas, we say so and point to official sources.</p>
-          <p>A fuller biography will be added once the owner has approved it. Planning help is available on <Link href="/plan-your-trip">Plan Your Trip</Link>, and the free <Link href="/trip-finder">trip finder</Link> gives quick suggestions. See also the <Link href="/privacy">privacy notice</Link> and <Link href="/policies">policies</Link>.</p>
+          <p>Ask Merv about <Link href="/plan-your-trip/thailand-extension-paperwork">extension paperwork</Link> or browse <Link href="/plan-your-trip">his other services</Link>. The free <Link href="/trip-finder">trip finder</Link> gives quick suggestions.</p>
         </div>
       </div>
     </section>

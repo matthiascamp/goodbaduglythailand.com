@@ -42,8 +42,17 @@ export const itineraryEnquirySchema = z.object({
   requirements: optionalText(1500),
 });
 
+export const paperworkEnquirySchema = z.object({
+  kind: z.literal("PAPERWORK"),
+  serviceSlug: z.string(),
+  ...base,
+  extensionType: text(200).min(1, "Please say what kind of extension you need"),
+  expiryDate: text(100).min(1, "Please say when your current permission to stay ends"),
+  location: text(200).min(1, "Please tell us where in Thailand you are"),
+});
+
 export const enquirySchema = z
-  .discriminatedUnion("kind", [callEnquirySchema, itineraryEnquirySchema])
+  .discriminatedUnion("kind", [callEnquirySchema, itineraryEnquirySchema, paperworkEnquirySchema])
   .superRefine((data, ctx) => {
     const service = getPlanService(data.serviceSlug);
     if (!service || service.kind !== data.kind) {

@@ -8,15 +8,15 @@ export const SERVICE_CURRENCY = "AUD";
 
 /** Owner-provided. Describe carefully: lived experience, not professional accreditation. */
 export const EXPERIENCE_STATEMENT =
-  "Written and delivered by someone who has lived in Thailand for approximately 18 years.";
+  "Merv lived in Thailand for 18 years. He knows the places worth finding, the practical realities of daily life, and how confusing the paperwork can be.";
 
 export const ADVICE_DISCLAIMER =
   "This is practical personal advice drawn from lived experience. It is not licensed immigration, legal, financial or medical advice.";
 
 export const ENQUIRY_NOTICE =
-  "Sending an enquiry is not a booking and no payment is taken. Nothing is confirmed until you receive a direct reply with scheduling and payment details.";
+  "Sending an enquiry is not a booking and no payment is taken. Nothing is confirmed until you receive a direct reply about scope, next steps and payment details.";
 
-export type ServiceKind = "CALL" | "ITINERARY";
+export type ServiceKind = "CALL" | "ITINERARY" | "PAPERWORK";
 
 export interface ServicePackage {
   id: string;
@@ -33,8 +33,8 @@ export interface PlanService {
   title: string;
   short: string;
   intro: string;
-  image: string;
-  imageAlt: string;
+  image?: string;
+  imageAlt?: string;
   priceAud: number;
   from?: boolean;
   durationLabel?: string;
@@ -47,6 +47,33 @@ export interface PlanService {
 }
 
 export const PLAN_SERVICES: PlanService[] = [
+  {
+    slug: "thailand-extension-paperwork",
+    kind: "PAPERWORK",
+    title: "Thailand Extension Paperwork",
+    short: "Merv prepares your extension application paperwork with you, so you know what you are taking to immigration.",
+    intro:
+      "Extension paperwork can be a headache when you are trying to enjoy your time in Thailand. Tell Merv what extension you are seeking and when your current permission ends. He will confirm whether he can help, then prepare the application paperwork using the details you provide for you to review.",
+    priceAud: 300,
+    durationLabel: "Paperwork preparation",
+    included: [
+      "An initial check that the paperwork request is within Merv's service scope",
+      "Preparation of the relevant extension application paperwork using information you provide",
+      "A copy for you to review before you sign or submit anything",
+      "A practical list of supporting documents to check against current official requirements",
+    ],
+    notIncluded: [
+      "Government application fees or third-party charges",
+      "Submission to Thai immigration or representation before an officer",
+      "A guarantee that an extension will be granted",
+      "Legal advice or a decision about your eligibility",
+    ],
+    topics: [],
+    disclaimer:
+      "Merv prepares paperwork from the information you supply. You remain responsible for checking, signing and submitting it. Immigration requirements and decisions are controlled by the Thai authorities; this is not licensed immigration or legal advice.",
+    metaDescription:
+      "Thailand extension paperwork preparation with Merv, who lived in Thailand for 18 years. Enquire before you commit.",
+  },
   {
     slug: "thailand-insider-consultation",
     kind: "CALL",

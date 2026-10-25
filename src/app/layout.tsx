@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Chonburi, Cormorant_Garamond, Sarabun } from "next/font/google";
+import { Chonburi, Fraunces, Sarabun } from "next/font/google";
 import "./globals.css";
 import "./temple.css";
 import Nav from "@/components/Nav";
@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import { Providers } from "./providers";
 import { SITE_URL } from "@/lib/site";
 
-const cormorant = Cormorant_Garamond({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-cormorant",
+  variable: "--font-fraunces",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -75,7 +75,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${sarabun.variable} ${chonburi.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${sarabun.variable} ${chonburi.variable}`}>
       <body className="bg-cream font-sans text-charcoal antialiased min-h-screen flex flex-col">
         <Providers>
           <Nav />

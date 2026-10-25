@@ -28,7 +28,14 @@ export default function EnquiryForm({ service }: { service: PlanService }) {
       website: get("website"),
       acknowledged: form.get("acknowledged") === "on" ? true : false,
     };
-    const payload = isItinerary
+    const payload = service.kind === "PAPERWORK"
+      ? {
+          ...common,
+          extensionType: get("extensionType"),
+          expiryDate: get("expiryDate"),
+          location: get("location"),
+        }
+      : isItinerary
       ? {
           ...common,
           packageId: get("packageId"),
@@ -91,7 +98,16 @@ export default function EnquiryForm({ service }: { service: PlanService }) {
         <label>Email<input name="email" type="email" autoComplete="email" required maxLength={200} {...aria("email")} />{err("email")}</label>
       </div>
 
-      {isItinerary ? (
+      {service.kind === "PAPERWORK" ? (
+        <>
+          <label>What kind of extension do you need?<input name="extensionType" required maxLength={200} placeholder="If you are unsure, say so" {...aria("extensionType")} />{err("extensionType")}</label>
+          <div className="plan-form-grid">
+            <label>When does your current permission to stay end?<input name="expiryDate" required maxLength={100} placeholder="Date or approximate date" {...aria("expiryDate")} />{err("expiryDate")}</label>
+            <label>Where in Thailand are you?<input name="location" required maxLength={200} placeholder="City or province" {...aria("location")} />{err("location")}</label>
+          </div>
+          <p className="plan-form-note">Please do not send passport numbers or copies through this enquiry form. Merv will confirm the scope and next steps by email.</p>
+        </>
+      ) : isItinerary ? (
         <>
           <fieldset>
             <legend>Package</legend>

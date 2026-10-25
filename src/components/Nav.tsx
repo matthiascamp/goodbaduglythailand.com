@@ -19,8 +19,8 @@ export default function Nav() {
   const admin = session?.user?.role === "ADMIN";
 
   const primary = [
+    { href: "/plan-your-trip", label: "Work with Merv" },
     { href: "/articles", label: "Articles" },
-    { href: "/plan-your-trip", label: "Plan Your Trip" },
     { href: "/services", label: "Advice" },
     { href: "/guide-shop", label: "Guides" },
   ];
@@ -56,7 +56,7 @@ export default function Nav() {
     <div className="editorial-nav-wrap" onKeyDown={onKeyDown}>
       <a className="skip-link" href="#main">Skip to content</a>
       <div className="temple-topbar">
-        <div><span>Independent guides to Thailand</span><span lang="th">ประเทศไทย</span></div>
+        <div><span>Practical Thailand help from Merv · 18 years lived experience</span><span lang="th">ประเทศไทย</span></div>
       </div>
       <header>
         <nav className="editorial-nav" aria-label="Main navigation" ref={navRef}>

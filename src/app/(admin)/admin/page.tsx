@@ -21,6 +21,8 @@ export default async function AdminDashboardPage() {
     publishedArticles,
     activeMembers,
     subscribers,
+    paperworkEnquiries,
+    paperworkClicks,
     recentArticles,
   ] = await Promise.all([
     db.comment.count({ where: { approved: false } }),
@@ -31,6 +33,11 @@ export default async function AdminDashboardPage() {
     db.article.count({ where: { published: true } }),
     db.user.count({ where: { membershipStatus: "ACTIVE" } }),
     db.newsletterSubscriber.count({ where: { status: "ACTIVE" } }),
+    db.serviceEnquiry.count({ where: { serviceSlug: "thailand-extension-paperwork" } }),
+    db.analyticsDaily.aggregate({
+      where: { event: "paperwork_cta_click" },
+      _sum: { count: true },
+    }),
     db.article.findMany({
       orderBy: { updatedAt: "desc" },
       take: 5,
@@ -47,6 +54,8 @@ export default async function AdminDashboardPage() {
   ].filter((item) => item.count > 0);
 
   const glance = [
+    { label: "Paperwork enquiries", value: paperworkEnquiries, href: "/admin/enquiries" },
+    { label: "Paperwork link clicks", value: paperworkClicks._sum.count ?? 0, href: "/admin/enquiries" },
     { label: "Published articles", value: publishedArticles, href: "/admin/articles" },
     { label: "Active members", value: activeMembers, href: "/admin/users" },
     { label: "Newsletter interest", value: subscribers, href: "/admin/newsletter" },

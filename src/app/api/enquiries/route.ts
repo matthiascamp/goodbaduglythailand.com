@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import { db } from "@/lib/db";
 import { trackEvent } from "@/lib/analytics";
 import { enquirySchema } from "@/lib/enquiry-schema";
+import { notifyOwnerOfEnquiry } from "@/lib/enquiry-notification";
 
 const MAX_BODY_BYTES = 20_000;
 const HOURLY_LIMIT_PER_EMAIL = 3;
@@ -70,7 +71,8 @@ export async function POST(request: NextRequest) {
       select: { id: true },
     });
 
-    await trackEvent(kind === "ITINERARY" ? "itinerary_enquiry_submitted" : "enquiry_submitted");
+    await trackEvent(kind === "ITINERARY" ? "itinerary_enquiry_submitted" : kind === "PAPERWORK" ? "paperwork_enquiry_submitted" : "enquiry_submitted");
+    await notifyOwnerOfEnquiry(serviceSlug, name, email);
     return NextResponse.json({ ok: true, id: enquiry.id }, { status: 201 });
   } catch (err) {
     console.error("[enquiries POST]", err);
